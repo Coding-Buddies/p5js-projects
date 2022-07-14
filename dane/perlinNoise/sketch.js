@@ -26,13 +26,16 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  let from = color(255, 200, 200);
+  let to = color(200, 80, 100);
+  setGradient(from, to);
 
   beginShape();
-  fill("green");
+  fill(135, 90, 27);
+
   let xoff = start;
   for (let x = 0; x < width; x++) {
-    stroke("blue");
+    stroke(90, 40, 11);
     if (x === width - 1) {
       vertex(width, height);
       vertex(0, height);
@@ -52,4 +55,15 @@ function draw() {
   stroke(255);
   index++;
   start += 0.01;
+}
+
+function setGradient(c1, c2) {
+  // noprotect
+  noFill();
+  for (var y = 0; y < height; y++) {
+    var inter = map(y, 0, height, 0, 1);
+    var c = lerpColor(c1, c2, inter);
+    stroke(c);
+    line(0, y, width, y);
+  }
 }
